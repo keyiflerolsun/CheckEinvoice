@@ -32,8 +32,8 @@ setup(
         "urllib3",
         "Pillow",
         "pytesseract",
-        "pygobject",
-        "pygobject-stubs"
+        # "pygobject",
+        # "pygobject-stubs"
     ],
 
     # ? Konsoldan Çalıştırılabilir

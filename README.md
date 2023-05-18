@@ -12,7 +12,7 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/eFatura?logo=pypi&logoColor=white)](https://pypi.org/project/eFatura)
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/eFatura?logo=pypi&logoColor=white)](https://pypi.org/project/eFatura)
 
-[![Fonksiyon Testleri ve PyPI Yükle](https://github.com/keyiflerolsun/E-Fatura_Sorgu/actions/workflows/KekikFlow.yml/badge.svg)](https://github.com/keyiflerolsun/E-Fatura_Sorgu/actions/workflows/KekikFlow.yml)
+[![Fonksiyon Testleri ve PyPI Yükle](https://github.com/keyiflerolsun/eFatura/actions/workflows/KekikFlow.yml/badge.svg)](https://github.com/keyiflerolsun/eFatura/actions/workflows/KekikFlow.yml)
 
 *Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu*
 
