@@ -6,7 +6,7 @@ from io         import open
 setup(
     # ? Genel Bilgiler
     name         = "eFatura",
-    version      = "1.0.1",
+    version      = "1.0.2",
     url          = "https://github.com/keyiflerolsun/E-Fatura_Sorgu",
     description  = "Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu",
     keywords     = ["eFatura", "KekikAkademi", "keyiflerolsun"],
@@ -31,13 +31,16 @@ setup(
         "requests",
         "urllib3",
         "Pillow",
-        "pytesseract"
+        "pytesseract",
+        "pygobject",
+        "pygobject-stubs"
     ],
 
     # ? Konsoldan Çalıştırılabilir
     entry_points = {
         "console_scripts": [
-            "eFatura = eFatura.konsol:basla",
+            "eFatura    = eFatura.konsol:basla",
+            "eFaturaGUI = eFatura.arayuz:basla"
         ]
     },
 
