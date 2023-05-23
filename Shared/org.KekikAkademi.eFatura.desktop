@@ -2,7 +2,7 @@
 Name=eFatura
 GenericName=eFatura Sorgu
 Comment=Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu
-Version=1.0.3
+Version=1.0.4
 Keywords=eFatura;KekikAkademi;keyiflerolsun
 Exec=eFaturaGUI
 Icon=org.KekikAkademi.eFatura

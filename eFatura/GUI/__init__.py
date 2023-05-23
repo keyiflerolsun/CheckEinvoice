@@ -10,12 +10,19 @@ from ..Libs        import dosya_ver
 class KekikGUI(Gtk.Window):
     def __init__(self):
         super().__init__()
-        self.set_title("eFatura")
+        self.set_titlebar(Gtk.HeaderBar(
+            title             = "eFatura",
+            subtitle          = "Mükellefiyet Sorgu Aracı",
+            show_close_button = True
+        ))
         self.set_resizable(False)
         self.set_default_size(300, 200)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.connect("delete-event", self.pencereyi_kapat)
         self.set_icon_from_file(dosya_ver("Assets/logo.png", ust_dizin=2))
+
+        ayarlar = Gtk.Settings.get_default()
+        ayarlar.set_property("gtk-application-prefer-dark-theme", True)
 
         self.pencere = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=20)
         self.add(self.pencere)
