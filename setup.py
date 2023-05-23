@@ -6,7 +6,7 @@ from io         import open
 setup(
     # ? Genel Bilgiler
     name         = "eFatura",
-    version      = "1.0.2",
+    version      = "1.0.3",
     url          = "https://github.com/keyiflerolsun/E-Fatura_Sorgu",
     description  = "Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu",
     keywords     = ["eFatura", "KekikAkademi", "keyiflerolsun"],
@@ -27,13 +27,12 @@ setup(
     install_requires = [
         "setuptools",
         "wheel",
-        "Kekik",
+        "install_freedesktop",
+        "rich",
         "requests",
         "urllib3",
         "Pillow",
-        "pytesseract",
-        # "pygobject",
-        # "pygobject-stubs"
+        "pytesseract"
     ],
 
     # ? Konsoldan Çalıştırılabilir
@@ -43,6 +42,14 @@ setup(
             "eFaturaGUI = eFatura.arayuz:basla"
         ]
     },
+
+    # ? Masaüstü Paketi
+    setup_requires = ["install_freedesktop"],
+    data_files     = [
+        ("share/appdata",                     ["Shared/org.KekikAkademi.eFatura.appdata.xml"]),
+        ("share/applications",                ["Shared/org.KekikAkademi.eFatura.desktop"]),
+        ("share/icons/hicolor/scalable/apps", ["Shared/org.KekikAkademi.eFatura.svg"])
+    ],
 
     # ? PyPI Bilgileri
     long_description_content_type = "text/markdown",

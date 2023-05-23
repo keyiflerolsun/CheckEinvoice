@@ -5,16 +5,17 @@ require_version("Gtk", "3.0")
 
 from gi.repository import Gtk, GLib
 from eFatura       import e_fatura
+from ..Libs        import dosya_ver
 
 class KekikGUI(Gtk.Window):
-    def __init__(self, pencere_adi="eFatura", logo_yolu="logo.png", p_genislik=300, p_yukseklik=200):
+    def __init__(self):
         super().__init__()
-        self.set_title(pencere_adi)
+        self.set_title("eFatura")
         self.set_resizable(False)
-        self.set_default_size(p_genislik, p_yukseklik)
+        self.set_default_size(300, 200)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.connect("delete-event", self.pencereyi_kapat)
-        self.set_icon_from_file(logo_yolu)
+        self.set_icon_from_file(dosya_ver("Assets/logo.png", ust_dizin=2))
 
         self.pencere = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=20)
         self.add(self.pencere)

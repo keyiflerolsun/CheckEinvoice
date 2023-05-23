@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=eFatura
+GenericName=eFatura Sorgu
+Comment=Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu
+Version=1.0.3
+Keywords=eFatura;KekikAkademi;keyiflerolsun
+Exec=eFaturaGUI
+Icon=org.KekikAkademi.eFatura
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education;

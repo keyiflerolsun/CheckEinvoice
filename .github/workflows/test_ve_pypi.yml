@@ -24,19 +24,22 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Python Sürümünü Göster
-        run: python -c "import sys; print(sys.version)"
+        run : python -c "import sys; print(sys.version)"
+
+      - name: Tesseract OCR Yükle
+        run : |
+          sudo apt-get update && sudo apt-get install tesseract-ocr
 
       - name: Pytest'i Yükle
-        run: |
-          sudo apt-get update && sudo apt-get install tesseract-ocr
+        run : |
           python -m pip install --upgrade pip
           pip install pytest
 
       - name: Kütüphaneyi Yükle
-        run: pip install .
+        run : pip install .
 
       - name: Test Dosyalarını Çalıştır
-        run: pytest
+        run : pytest
 
       # - name: Test Dosyalarını Windows Ortamda Çalıştır
       #   if: matrix.os == 'windows-latest'
@@ -66,21 +69,19 @@ jobs:
           python-version: "3.10.8"
 
       - name: Python Sürümünü Göster
-        run: python -c "import sys; print(sys.version)"
+        run : python -c "import sys; print(sys.version)"
 
       - name: Gereksinimleri Yükle
-        run: |
+        run : |
           python -m pip install --upgrade pip
-          pip install setuptools wheel twine
+          pip install -U setuptools wheel build twine
 
       - name: Kütüphaneyi PyPI'ye Yükle
-        env:
+        env :
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-        run: |
-          python setup.py bdist_wheel sdist
+        run : |
+          python -m build --sdist --wheel
           twine check dist/*
           python -m twine upload dist/*
-          rm -rf build/
-          rm -rf dist/
-          rm -rf -- *.egg-info/
+          rm -rf build/ dist/ *.egg-info/

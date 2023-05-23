@@ -1,0 +1,77 @@
+# Bu araç @keyiflerolsun tarafından | @KekikAkademi için yazılmıştır.
+
+name: Flatpak Yükleyici
+
+on: [push, pull_request]
+
+jobs:
+  FlatpakYukleyici:
+    name    : Flatpak Yükleyici
+    runs-on : ubuntu-latest
+
+    steps:
+      - name: Depo Kontrolü
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Python 3.10.8 Yükle
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10.8"
+
+      - name: Değişkenleri Ayarla
+        run : |
+          PAKET_V=$(cat setup.py | grep -oP "(?<=version      = \").*?(?=\")")
+          PAKET_ADI=$(cat setup.py | sed -n 's/.*"\(Shared\/\([^"]*\)\.desktop\)".*/\2/p')
+
+          echo "PAKET_V=$PAKET_V" >> $GITHUB_ENV
+          echo "PAKET_ADI=$PAKET_ADI" >> $GITHUB_ENV
+
+          echo "Paket Adı: $PAKET_ADI"
+          echo "Paket Sürümü: $PAKET_V"
+
+      - name: Gereksinimleri Yükle
+        run : |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel pyyaml
+          sudo apt update -qq
+          sudo apt install -y flatpak flatpak-builder --fix-missing
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
+          flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo --user
+          flatpak update && flatpak upgrade
+          flatpak install flathub org.gnome.{Platform,Sdk}//44 -y --noninteractive --user
+
+      - name: Paketle
+        run : |
+          mv Shared/*.yml . && mv Shared/SRC .
+          flatpak-builder --repo=github --force-clean build-dir $PAKET_ADI.yml
+          flatpak build-bundle github $PAKET_ADI.flatpak $PAKET_ADI
+
+      - name: Artıkları Temizle
+        run : |
+          rm -rf .flatpak* .vscode build-dir && find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+
+      - name: Paketi GitHub'a Yükle
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.PAKET_ADI }}
+          path: ./${{ env.PAKET_ADI }}.flatpak
+
+      - name: Güncelleme Kontrol Et
+        id  : guncelleme_var_mi
+        run : |
+          if git diff --name-only HEAD^ | grep -q "setup.py"; then echo "degisiklik=true"; else echo "degisiklik=false"; fi >> $GITHUB_OUTPUT
+  
+      - name: GitHub Release Oluştur
+        if  : steps.guncelleme_var_mi.outputs.degisiklik == 'true'
+        uses: softprops/action-gh-release@v1
+        env :
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name   : ${{ env.PAKET_V }}
+          body       : 🕊 **${{ env.PAKET_ADI }}** _GitHub tarafından_ `${{ env.PAKET_V }}`'e _Otomatik olarak paketlendi.._
+          draft      : false
+          prerelease : false
+          files      : |
+            ./${{ env.PAKET_ADI }}.flatpak

@@ -1,8 +1,8 @@
 # Bu araç @keyiflerolsun tarafından | @KekikAkademi için yazılmıştır.
 
-from Kekik.cli import konsol
-from eFatura   import e_fatura
-from sys       import argv
+from .Libs   import konsol
+from eFatura import e_fatura
+from sys     import argv
 
 def basla():
     print()
