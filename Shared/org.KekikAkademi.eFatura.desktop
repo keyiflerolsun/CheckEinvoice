@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=eFatura
-GenericName=eFatura Sorgu
+GenericName=eFatura Mükellefiyet Sorgu Aracı
 Comment=Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu
-Version=1.0.4
+Version=1.0.5
 Keywords=eFatura;KekikAkademi;keyiflerolsun
 Exec=eFaturaGUI
 Icon=org.KekikAkademi.eFatura
