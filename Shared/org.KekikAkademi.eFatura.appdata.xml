@@ -41,6 +41,11 @@
   </categories>
 
   <releases>
+    <release version="1.0.6" date="2023-5-23">
+      <p>
+        Çeşitli iyileştirmeler yapıldı..
+      </p>
+    </release>
     <release version="1.0.5" date="2023-5-23"></release>
     <release version="0.0.1" date="2022-8-13"></release>
   </releases>

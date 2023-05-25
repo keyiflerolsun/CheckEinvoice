@@ -6,8 +6,8 @@ from io         import open
 setup(
     # ? Genel Bilgiler
     name         = "eFatura",
-    version      = "1.0.5",
-    url          = "https://github.com/keyiflerolsun/E-Fatura_Sorgu",
+    version      = "1.0.6",
+    url          = "https://github.com/keyiflerolsun/eFatura",
     description  = "Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu",
     keywords     = ["eFatura", "KekikAkademi", "keyiflerolsun"],
 

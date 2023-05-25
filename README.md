@@ -1,4 +1,4 @@
-# 🔍 eFatura
+# <a href="#"><img width="32" src="https://raw.githubusercontent.com/keyiflerolsun/eFatura/main/Shared/org.KekikAkademi.eFatura.svg"></a> eFatura
 
 [![Boyut](https://img.shields.io/github/repo-size/keyiflerolsun/eFatura?logo=git&logoColor=white&label=Boyut)](#)
 [![Görüntülenme](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/keyiflerolsun/eFatura&title=Görüntülenme)](#)
@@ -7,6 +7,9 @@
 [![GitHub](https://img.shields.io/github/v/release/keyiflerolsun/eFatura?logo=github&label=GitHub)](https://github.com/keyiflerolsun/eFatura/releases)
 [![Fonksiyon Testleri ve PyPI Yükle](https://img.shields.io/github/actions/workflow/status/keyiflerolsun/eFatura/test_ve_pypi.yml?label=PyPI%20Y%C3%BCkleyici&logo=github)](https://github.com/keyiflerolsun/eFatura/actions/workflows/test_ve_pypi.yml)
 [![Flatpak Yükleyici](https://img.shields.io/github/actions/workflow/status/keyiflerolsun/eFatura/flatpakYukle.yml?label=Flatpak%20Y%C3%BCkleyici&logo=github)](https://github.com/keyiflerolsun/eFatura/actions/workflows/flatpakYukle.yml)
+
+[![FlatHub](https://img.shields.io/flathub/v/org.KekikAkademi.eFatura?logo=flathub&logoColor=white&label=FlatHub)](https://flathub.org/tr/apps/org.KekikAkademi.eFatura)
+[![FlatHub - Yüklenme](https://img.shields.io/flathub/downloads/org.KekikAkademi.eFatura?logo=flathub&logoColor=white&label=Yüklenme)](https://flathub.org/tr/apps/org.KekikAkademi.eFatura)
 
 [![PyPI](https://img.shields.io/pypi/v/eFatura?logo=pypi&logoColor=white&label=PyPI)](https://pypi.org/project/eFatura)
 [![PyPI - Yüklenme](https://img.shields.io/pypi/dm/eFatura?logo=pypi&logoColor=white&label=Yüklenme)](https://pypi.org/project/eFatura)
@@ -35,6 +38,16 @@ pip install eFatura
 pip install -U eFatura
 ```
 
+### <a href="#"><img width="16" src="https://raw.githubusercontent.com/keyiflerolsun/eFatura/main/.github/icons/flathub.svg"></a> FlatHub (UI)
+
+```bash
+# Yüklemek
+flatpak install flathub org.KekikAkademi.eFatura
+
+# Çalıştırmak
+flatpak run org.KekikAkademi.eFatura
+```
+
 ## 📝 Kullanım
 
 ### <a href="#"><img width="16" src="https://raw.githubusercontent.com/keyiflerolsun/eFatura/main/.github/icons/python.svg"></a> Lib
@@ -59,8 +72,11 @@ eFatura 11111111111
 
 ```bash
 eFaturaGUI
-```
 
+# veya
+
+flatpak run org.KekikAkademi.eFatura
+```
 
 ---
 
