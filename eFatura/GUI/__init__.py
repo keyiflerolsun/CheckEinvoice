@@ -10,11 +10,12 @@ from ..Libs        import dosya_ver
 class KekikGUI(Gtk.Window):
     def __init__(self):
         super().__init__()
-        self.set_titlebar(Gtk.HeaderBar(
+        self.header = Gtk.HeaderBar(
             title             = "eFatura",
             subtitle          = "Mükellefiyet Sorgu Aracı",
             show_close_button = True
-        ))
+        )
+        self.set_titlebar(self.header)
         self.set_resizable(False)
         self.set_default_size(300, 200)
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -23,6 +24,10 @@ class KekikGUI(Gtk.Window):
 
         ayarlar = Gtk.Settings.get_default()
         ayarlar.set_property("gtk-application-prefer-dark-theme", True)
+
+        self.hakkinda_butonu = Gtk.Button.new_from_icon_name("help-about", Gtk.IconSize.SMALL_TOOLBAR)
+        self.hakkinda_butonu.connect("clicked", self.hakkinda_ac)
+        self.header.pack_end(self.hakkinda_butonu)
 
         self.pencere = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=20)
         self.add(self.pencere)
@@ -53,6 +58,30 @@ class KekikGUI(Gtk.Window):
         self.show_all()
         Gtk.main()
 
+    def hakkinda_ac(self, widget):
+        self.hakkinda = Gtk.AboutDialog()
+        self.hakkinda.set_transient_for(self)
+        self.hakkinda.set_modal(self)
+
+        self.hakkinda.set_logo_icon_name("org.KekikAkademi.eFatura")
+        self.hakkinda.set_program_name("eFatura Sorgu")
+        self.hakkinda.set_version("1.0.8")
+        self.hakkinda.set_comments("Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu")
+        self.hakkinda.set_website_label("Bağış Yap")
+        self.hakkinda.set_website("https://keyiflerolsun.dev/Kahve")
+        self.hakkinda.set_copyright("Copyright (C) 2023 by keyiflerolsun")
+        self.hakkinda.set_license_type(Gtk.License.GPL_3_0)
+
+        self.hakkinda.set_authors(["keyiflerolsun"])
+        self.hakkinda.add_credit_section(("Özel Teşekkürler"), ("@KekikAkademi", "@KekikKahve"))
+
+        self.hakkinda.connect("response", self.__hakkinda_takip)
+
+        self.hakkinda.show()
+
+    def __hakkinda_takip(self, dialog, response_id):
+        if response_id in [Gtk.ResponseType.CLOSE, Gtk.ResponseType.DELETE_EVENT]:
+            dialog.hide()
 
 class Program():
     def __init__(self, parent:Gtk.Window):
