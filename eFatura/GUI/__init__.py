@@ -9,15 +9,12 @@ from ..Libs        import dosya_ver
 
 class KekikGUI(Gtk.Window):
     def __init__(self):
-        super().__init__()
-        self.header = Gtk.HeaderBar(
-            title             = "eFatura",
-            subtitle          = "Mükellefiyet Sorgu Aracı",
-            show_close_button = True
+        super().__init__(
+            title          = "eFatura",
+            default_width  = 300,
+            default_height = 200,
+            resizable      = False
         )
-        self.set_titlebar(self.header)
-        self.set_resizable(False)
-        self.set_default_size(300, 200)
         self.set_position(Gtk.WindowPosition.CENTER)
         self.connect("delete-event", self.pencereyi_kapat)
         self.set_icon_from_file(dosya_ver("Assets/logo.png", ust_dizin=2))
@@ -25,9 +22,15 @@ class KekikGUI(Gtk.Window):
         ayarlar = Gtk.Settings.get_default()
         ayarlar.set_property("gtk-application-prefer-dark-theme", True)
 
+        self.header = Gtk.HeaderBar(
+            title             = "eFatura",
+            subtitle          = "Mükellefiyet Sorgu Aracı",
+            show_close_button = True
+        )
         self.hakkinda_butonu = Gtk.Button.new_from_icon_name("help-about", Gtk.IconSize.SMALL_TOOLBAR)
         self.hakkinda_butonu.connect("clicked", self.hakkinda_ac)
         self.header.pack_end(self.hakkinda_butonu)
+        self.set_titlebar(self.header)
 
         self.pencere = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10, margin=20)
         self.add(self.pencere)
@@ -59,24 +62,21 @@ class KekikGUI(Gtk.Window):
         Gtk.main()
 
     def hakkinda_ac(self, widget):
-        self.hakkinda = Gtk.AboutDialog()
-        self.hakkinda.set_transient_for(self)
-        self.hakkinda.set_modal(self)
-
-        self.hakkinda.set_logo_icon_name("org.KekikAkademi.eFatura")
-        self.hakkinda.set_program_name("eFatura Sorgu")
-        self.hakkinda.set_version("1.0.8")
-        self.hakkinda.set_comments("Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu")
-        self.hakkinda.set_website_label("Bağış Yap")
-        self.hakkinda.set_website("https://keyiflerolsun.dev/Kahve")
-        self.hakkinda.set_copyright("Copyright (C) 2023 by keyiflerolsun")
-        self.hakkinda.set_license_type(Gtk.License.GPL_3_0)
-
-        self.hakkinda.set_authors(["keyiflerolsun"])
+        self.hakkinda = Gtk.AboutDialog(
+            transient_for  = self,
+            modal          = True,
+            logo_icon_name = "org.KekikAkademi.eFatura",
+            program_name   = "eFatura Sorgu",
+            version        = "1.0.8",
+            comments       = "Vergi veya TC Kimlik Numarasından E-Fatura Mükellefiyet Sorgusu",
+            website_label  = "Bağış Yap",
+            website        = "https://keyiflerolsun.dev/Kahve",
+            copyright      = "Copyright (C) 2023 by keyiflerolsun",
+            license_type   = Gtk.License.GPL_3_0,
+            authors        = ["keyiflerolsun"]
+        )
         self.hakkinda.add_credit_section(("Özel Teşekkürler"), ("@KekikAkademi", "@KekikKahve"))
-
         self.hakkinda.connect("response", self.__hakkinda_takip)
-
         self.hakkinda.show()
 
     def __hakkinda_takip(self, dialog, response_id):
@@ -90,12 +90,11 @@ class Program():
         sorgu_alani = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
         parent.pencere.pack_start(sorgu_alani, False, False, 0)
 
-        self.arama_metni = Gtk.Entry()
-        self.arama_metni.set_placeholder_text("Vergi / TC Kimlik Numarası")
+        self.arama_metni = Gtk.Entry(placeholder_text="Vergi / TC Kimlik Numarası")
         self.arama_metni.connect("activate", self.ara_butonuna_tiklandiginda)
         sorgu_alani.pack_start(self.arama_metni, False, False, 0)
 
-        self.ara_butonu = Gtk.Button.new_with_label("Ara")
+        self.ara_butonu = Gtk.Button(label="Ara")
         self.ara_butonu.connect("clicked", self.ara_butonuna_tiklandiginda)
         sorgu_alani.pack_start(self.ara_butonu, False, False, 0)
         self.ara_butonu.grab_focus()
@@ -110,13 +109,16 @@ class Program():
 
         self.cikti_alani.foreach(Gtk.Widget.destroy)
 
-        bekleme_etiketi = Gtk.Label()
-        bekleme_etiketi.set_markup("<span foreground='#EF7F1A' font_desc='12'>Lütfen Bekleyiniz...</span>")
-        bekleme_etiketi.set_margin_top(10)
-        bekleme_etiketi.set_halign(Gtk.Align.CENTER)
-        bekleme_etiketi.set_justify(Gtk.Justification.CENTER)
-        bekleme_etiketi.set_line_wrap(True)
-        bekleme_etiketi.set_max_width_chars(30)
+        bekleme_etiketi = Gtk.Label(
+            label           = "Lütfen Bekleyiniz...",
+            markup          = "<span foreground='#EF7F1A' font_desc='12'>Lütfen Bekleyiniz...</span>",
+            use_markup      = True,
+            margin_top      = 10,
+            halign          = Gtk.Align.CENTER,
+            justify         = Gtk.Justification.CENTER,
+            line_wrap       = True,
+            max_width_chars = 30
+        )
         self.cikti_alani.pack_start(bekleme_etiketi, False, False, 0)
         self.parent.show_all()
 
