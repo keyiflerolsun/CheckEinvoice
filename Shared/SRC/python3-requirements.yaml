@@ -23,8 +23,8 @@ modules:
         --prefix=${FLATPAK_DEST} "rich" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/bf/25/2d88e8feee8e055d015343f9b86e370a1ccbec546f2865c98397aaef24af/markdown_it_py-2.2.0-py3-none-any.whl
-        sha256: 5a35f8d1870171d9acc47b99612dc146129b631baf04970128b568f190d0cc30
+        url: https://files.pythonhosted.org/packages/42/d7/1ec15b46af6af88f19b8e5ffea08fa375d433c998b8a7639e76935c14f1f/markdown_it_py-3.0.0-py3-none-any.whl
+        sha256: 355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1
         x-checker-data:
           name: markdown_it_py
           packagetype: bdist_wheel
@@ -37,8 +37,8 @@ modules:
           packagetype: bdist_wheel
           type: pypi
       - type: file
-        url: https://files.pythonhosted.org/packages/39/03/6de23bdd88f5ee7f8b03f94f6e88108f5d7ffe6d207e95cdb06d9aa4cd57/rich-13.3.5-py3-none-any.whl
-        sha256: 69cdf53799e63f38b95b9bf9c875f8c90e78dd62b2f00c13a911c7a3b9fa4704
+        url: https://files.pythonhosted.org/packages/fc/1e/482e5eec0b89b593e81d78f819a9412849814e22225842b598908e7ac560/rich-13.4.2-py3-none-any.whl
+        sha256: 8f87bc7ee54675732fa66a05ebfe489e27264caeeff3728c945d25971b6485ec
         x-checker-data:
           name: rich
           packagetype: bdist_wheel
@@ -78,8 +78,8 @@ modules:
           type: pypi
       - &id001
         type: file
-        url: https://files.pythonhosted.org/packages/4b/1d/f8383ef593114755429c307449e7717b87044b3bcd5f7860b89b1f759e34/urllib3-2.0.2-py3-none-any.whl
-        sha256: d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e
+        url: https://files.pythonhosted.org/packages/8a/03/ad9306a50d05c166e3456fe810f33cee2b8b2a7a6818ec5d4908c4ec6b36/urllib3-2.0.3-py3-none-any.whl
+        sha256: 48e7fafa40319d358848e1bc6809b208340fafe2096f1725d05d67443d0483d1
         x-checker-data:
           name: urllib3
           packagetype: bdist_wheel
