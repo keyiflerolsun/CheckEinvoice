@@ -109,16 +109,13 @@ class Program():
 
         self.cikti_alani.foreach(Gtk.Widget.destroy)
 
-        bekleme_etiketi = Gtk.Label(
-            label           = "Lütfen Bekleyiniz...",
-            markup          = "<span foreground='#EF7F1A' font_desc='12'>Lütfen Bekleyiniz...</span>",
-            use_markup      = True,
-            margin_top      = 10,
-            halign          = Gtk.Align.CENTER,
-            justify         = Gtk.Justification.CENTER,
-            line_wrap       = True,
-            max_width_chars = 30
-        )
+        bekleme_etiketi = Gtk.Label()
+        bekleme_etiketi.set_markup("<span foreground='#EF7F1A' font_desc='12'>Lütfen Bekleyiniz...</span>")
+        bekleme_etiketi.set_margin_top(10)
+        bekleme_etiketi.set_halign(Gtk.Align.CENTER)
+        bekleme_etiketi.set_justify(Gtk.Justification.CENTER)
+        bekleme_etiketi.set_line_wrap(True)
+        bekleme_etiketi.set_max_width_chars(30)
         self.cikti_alani.pack_start(bekleme_etiketi, False, False, 0)
         self.parent.show_all()
 
